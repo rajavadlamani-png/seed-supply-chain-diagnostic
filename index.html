@@ -102,6 +102,45 @@ body.diag-page .diagnostic-rights{display:none!important}
  .diagnostic-header-back{font-size:.62rem;padding:7px 10px}
  body.diag-page.diag-active #diagnostic{padding:18px 16px!important}
 }
+</style><style>
+/* Final readable diagnostic application shell */
+body.diag-page{background:#f7f6f0!important;color:#173b2c!important}
+body.diag-page .diagnostic-header{height:68px!important;min-height:68px!important;padding:0 34px!important;background:#fbfaf6!important;border-bottom:1px solid rgba(23,59,44,.10)!important}
+body.diag-page .diagnostic-header .brand-logo{width:170px!important;height:auto!important;max-height:50px!important}
+body.diag-page .diagnostic-header-title{margin:0 auto!important;font-size:.70rem!important;letter-spacing:.16em!important;font-weight:800!important;color:#526158!important}
+body.diag-page .diagnostic-header-back{font-size:.72rem!important;padding:8px 14px!important;border-radius:999px!important}
+body.diag-page.diag-active{overflow:hidden!important;height:100vh!important}
+body.diag-page.diag-active main{height:calc(100vh - 68px)!important;overflow:hidden!important}
+body.diag-page.diag-active #intro{display:none!important}
+body.diag-page.diag-active #diagnostic{display:flex!important;height:100%!important;min-height:0!important;padding:22px 28px!important;box-sizing:border-box!important;align-items:center!important}
+body.diag-page.diag-active .diag-workspace{width:100%!important;max-width:980px!important;margin:0 auto!important}
+body.diag-page.diag-active .diag-progress{margin:0 0 12px!important}
+body.diag-page.diag-active .diag-progress-label{font-size:.78rem!important;min-width:128px!important}
+body.diag-page.diag-active .diag-question-card{width:100%!important;max-width:none!important;box-sizing:border-box!important;padding:28px 34px!important;border-radius:22px!important;overflow:visible!important;background:#fff!important;box-shadow:0 16px 45px rgba(23,59,44,.08)!important}
+body.diag-page.diag-active .diag-question-meta{margin-bottom:8px!important}
+body.diag-page.diag-active .diag-question-card h2{font-size:clamp(1.55rem,2.35vw,2.05rem)!important;line-height:1.24!important;letter-spacing:-.025em!important;margin:8px 0 18px!important;max-width:900px!important}
+body.diag-page.diag-active .diag-options{display:grid!important;grid-template-columns:1fr!important;gap:7px!important}
+body.diag-page.diag-active .diag-option,
+body.diag-page.diag-active .diag-option:last-child{grid-column:auto!important;min-height:0!important;padding:10px 14px!important;display:grid!important;grid-template-columns:22px 34px 1fr!important;align-items:center!important;border-radius:11px!important}
+body.diag-page.diag-active .diag-option strong{font-size:.88rem!important}
+body.diag-page.diag-active .diag-option small{font-size:.78rem!important;line-height:1.35!important;margin-top:2px!important}
+body.diag-page.diag-active .option-number{width:28px!important;height:28px!important}
+body.diag-page.diag-active .diag-why{margin-top:13px!important;padding:12px 15px!important;background:#fff!important;border:1px solid #dfe5df!important;border-left:4px solid #c9a75a!important;border-radius:11px!important;font-size:.80rem!important;line-height:1.45!important}
+body.diag-page.diag-active .diag-why strong{display:block!important;margin:0 0 3px!important}
+body.diag-page.diag-active .diag-actions{margin-top:14px!important}
+body.diag-page.diag-active .diag-button{padding:11px 19px!important}
+body.diag-page .diagnostic-rights{display:none!important}
+@media(max-width:800px){
+  body.diag-page .diagnostic-header{padding:0 16px!important}
+  body.diag-page .diagnostic-header-title{font-size:.55rem!important;letter-spacing:.08em!important}
+  body.diag-page.diag-active{overflow:auto!important;height:auto!important}
+  body.diag-page.diag-active main{height:auto!important;overflow:visible!important}
+  body.diag-page.diag-active #diagnostic{height:auto!important;min-height:calc(100vh - 68px)!important;padding:18px 14px 28px!important;align-items:flex-start!important}
+  body.diag-page.diag-active .diag-question-card{padding:22px 17px!important}
+  body.diag-page.diag-active .diag-question-card h2{font-size:1.45rem!important}
+  body.diag-page.diag-active .diag-option{grid-template-columns:20px 30px 1fr!important;padding:10px!important}
+  body.diag-page.diag-active .diag-option small{font-size:.74rem!important}
+}
 </style></head>
 <body class="diag-page">
 <header class="site-header diagnostic-header">
@@ -115,6 +154,5 @@ body.diag-page .diagnostic-rights{display:none!important}
 <section id="intro" class="diag-hero"><div class="diag-hero-inner"><p class="eyebrow">SAGE HARVEST LABS</p><h1>Seed Supply Chain <em>Diagnostic</em></h1><p class="diag-lead">How resilient is your seed supply chain? Assess maturity across planning, production, quality, inventory, traceability, decision intelligence and resilience.</p><div class="diag-stats"><div class="diag-stat"><strong>10</strong><span>Dimensions</span></div><div class="diag-stat"><strong>30</strong><span>Questions</span></div><div class="diag-stat"><strong>~7</strong><span>Minutes</span></div></div><button id="startBtn" class="diag-button" type="button">Begin Diagnostic →</button><p class="diag-note">Your responses generate an indicative maturity profile. No confidential company information is required.</p></div></section>
 <section id="diagnostic" class="diag-shell" hidden><div class="diag-workspace"><div class="diag-progress"><span id="qNumber" class="diag-progress-label">Question 1 of 30</span><div class="diag-progress-bar"><i id="progressFill"></i></div><span id="progressText" class="diag-progress-percent">0%</span></div><div class="diag-stage"><div class="diag-question-card"><div class="diag-question-meta"><span id="dimensionNo" class="diag-kicker">01</span><span id="dimensionName" class="diag-kicker">DEMAND &amp; MARKET PLANNING</span></div><h2 id="questionText"></h2><div id="options" class="diag-options"></div><div class="diag-why"><strong>Why we ask this</strong><span id="whyText"></span></div><div id="answerHint" class="answer-hint">Please select one maturity level to continue.</div><div class="diag-actions"><button id="backBtn" class="diag-button secondary" type="button">← Previous</button><button id="nextBtn" class="diag-button" type="button">Next Question →</button></div></div></div></div></section>
 <section id="results" hidden><div class="results-shell"><div class="results-hero"><div class="results-hero-inner"><div><p class="diag-kicker">YOUR SEED SUPPLY CHAIN PROFILE</p><h1 id="overallLabel">Integrated</h1><p id="overallCopy" class="results-copy"></p><div class="maturity-track"><span>Reactive</span><span>Structured</span><span>Integrated</span><span>Intelligent</span><span>Adaptive</span></div></div><div class="results-score"><span id="overallScore">3.42</span><small> / 5.00</small></div></div></div><div class="diag-shell"><div id="resultTabs" class="diag-tabs result-tabs" role="tablist" aria-label="Diagnostic results"></div><div id="resultPanelOverview" class="result-panel"><div class="result-card insight-band"><p class="diag-kicker">KEY STRATEGIC OBSERVATION</p><p id="profileInsight"></p></div><div class="results-grid"><div class="result-card radar"><h2>Supply Chain Maturity Map</h2><div id="radar"></div></div></div></div><div id="resultPanelDimensions" class="result-panel" hidden><div class="result-card"><h2>Your Maturity by Dimension</h2><div id="dimensionList"></div></div></div><div id="resultPanelInsights" class="result-panel" hidden><div class="three-col"><div class="result-card"><h2>Strongest Capabilities</h2><div id="strongList" class="result-list"></div></div><div class="result-card"><h2>Priority Gaps</h2><div id="gapList" class="result-list"></div></div><div class="result-card"><h2>Derived Insights</h2><div id="derivedList" class="derived-list"></div></div></div></div><div id="resultPanelMoves" class="result-panel" hidden><div class="result-card moves"><p class="diag-kicker">YOUR THREE MOVES</p><h2>Where to focus next</h2><div id="moveList"></div></div></div><div id="resultPanelEngage" class="result-panel" hidden><div class="result-cta"><div><p class="diag-kicker">WHERE SAGE HARVEST CAN HELP</p><h2>Turn the diagnostic into a deeper supply-chain review.</h2><p>A diagnostic provides an indicative maturity view. A confidential review can examine the underlying operating model, data and decision processes in greater depth.</p><p class="small-note">Puja can also explain the published Sage Harvest diagnostic framework.</p></div><a class="diag-button" href="https://rajavadlamani-png.github.io/Sage-Harvest/contact.html">Discuss Your Diagnostic →</a></div><div class="result-actions"><button id="printBtn" class="diag-button secondary" type="button">Print / Save Report</button><button id="saveBtn" class="diag-button secondary" type="button">Save Results</button><button id="restartBtn" class="diag-button secondary" type="button">Start Again</button><a class="diag-button secondary" href="https://rajavadlamani-png.github.io/Sage-Harvest/ai-puja.html">Ask Puja About the Framework</a></div></div></div></div><div class="diagnostic-rights results-rights" style="display:block!important;margin:18px 0 0;max-width:none"><strong>Proprietary Tool &amp; Intellectual Property</strong><p>The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited.</p><p>© 2026 Sage Harvest Agro Pvt. Limited. All rights reserved.</p></div></section></main>
-<div class="diagnostic-rights"><strong>Proprietary Tool &amp; Intellectual Property</strong><p>The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited.</p><p>© 2026 Sage Harvest Agro Pvt. Limited. All rights reserved. No part of this tool or its underlying framework may be copied, reproduced, adapted, distributed, republished, or commercially reused without prior written consent of Sage Harvest Agro Pvt. Limited, except where permitted by applicable law.</p></div>
 <script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=3"></script>
 </body></html>
