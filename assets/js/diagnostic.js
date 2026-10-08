@@ -177,3 +177,9 @@
     $('startBtn').addEventListener('click',start);$('nextBtn').addEventListener('click',next);$('backBtn').addEventListener('click',back);$('restartBtn').addEventListener('click',restart);$('printBtn').addEventListener('click',printReport);$('saveBtn').addEventListener('click',saveResults);
   });
 })();
+
+// Compact IP notice for every Results tab.
+document.addEventListener('DOMContentLoaded',function(){
+  var b=document.getElementById('ipDetailsBtn'),d=document.getElementById('ipDetails');
+  if(b&&d)b.addEventListener('click',function(){var open=!d.hidden;d.hidden=open;b.setAttribute('aria-expanded',String(!open));b.textContent=open?'IP & usage notice':'Hide IP notice';});
+});
