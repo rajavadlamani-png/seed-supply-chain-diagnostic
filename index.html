@@ -494,6 +494,52 @@ body.diag-page #results[hidden]{display:none!important}
 @media print{
  .diagnostic-header,.diagnostic-ip-global,.rd-actions{display:none!important}.rd-hero-art{display:none}.results-dashboard{background:#fff}.rd-insights{margin:0;padding:20px;background:#f5f5f0}
 }
+</style><style>
+/* Focused refinement pass — preserve approved dashboard structure */
+body.diag-page .diagnostic-header::after{content:none!important;display:none!important}
+body.diag-page .diagnostic-header{display:grid!important;grid-template-columns:1fr auto 1fr!important;gap:20px!important}
+body.diag-page .diagnostic-header .brand{justify-self:start!important}
+body.diag-page .diagnostic-header .diagnostic-header-title{margin:0!important;justify-self:center!important;text-align:center!important}
+body.diag-page .diagnostic-header .diagnostic-header-back{justify-self:end!important}
+body.diag-page #results .results-dashboard{width:100%!important;overflow:hidden!important}
+body.diag-page #results .rd-hero-inner{max-width:1320px!important;padding-left:42px!important;padding-right:42px!important;grid-template-columns:minmax(0,1.25fr) minmax(220px,.58fr) minmax(260px,.72fr)!important}
+body.diag-page #results .rd-main{max-width:1320px!important;padding-left:42px!important;padding-right:42px!important;padding-bottom:130px!important}
+body.diag-page #results .rd-hero-art{right:0!important;width:350px!important}
+body.diag-page #results .rd-art-copy{right:5px!important;font-size:.88rem!important}
+body.diag-page #results .rd-two-col{grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:20px!important}
+body.diag-page #results .rd-card{min-width:0!important;padding:24px!important}
+body.diag-page #results .rd-radar{height:320px!important;padding:0 8px!important;overflow:visible!important}
+body.diag-page #results .rd-radar svg{width:min(100%,410px)!important;max-height:330px!important;overflow:visible!important}
+body.diag-page #results .rd-radar text{font-size:9px!important;fill:#526158!important;font-weight:500!important}
+body.diag-page #results .rd-performance-grid{column-gap:38px!important;padding:22px 26px!important}
+body.diag-page #results .dimension-bar-row{grid-template-columns:minmax(150px,190px) minmax(70px,1fr) 38px!important;gap:11px!important}
+body.diag-page #results .dimension-bar-label{font-size:.78rem!important}
+body.diag-page .diagnostic-ip-global{min-height:36px!important}
+body.diag-page .diagnostic-ip-global .diagnostic-ip-details:not([hidden]){max-height:24vh!important;overflow:auto!important}
+@media(max-width:1000px){
+ body.diag-page .diagnostic-header{grid-template-columns:auto 1fr auto!important;padding:0 18px!important;gap:12px!important}
+ body.diag-page .diagnostic-header-title{font-size:.58rem!important;letter-spacing:.08em!important}
+ body.diag-page #results .rd-hero-inner{grid-template-columns:minmax(0,1fr) minmax(200px,.65fr)!important;padding:32px 24px!important}
+ body.diag-page #results .rd-hero-art{opacity:.28!important;pointer-events:none!important}
+ body.diag-page #results .rd-main{padding-left:24px!important;padding-right:24px!important}
+}
+@media(max-width:700px){
+ body.diag-page .diagnostic-header{grid-template-columns:auto 1fr!important}
+ body.diag-page .diagnostic-header-title{justify-self:end!important;font-size:.53rem!important}
+ body.diag-page .diagnostic-header-back{display:none!important}
+ body.diag-page #results .rd-hero-inner{display:block!important;padding:26px 18px 30px!important;min-height:0!important}
+ body.diag-page #results .rd-hero h1{font-size:clamp(3.4rem,15vw,4.5rem)!important}
+ body.diag-page #results .rd-score-card{margin-top:18px!important;width:max-content!important;max-width:100%!important;box-sizing:border-box!important}
+ body.diag-page #results .rd-hero-art{display:none!important}
+ body.diag-page #results .rd-main{padding:14px 16px 130px!important}
+ body.diag-page #results .rd-two-col{grid-template-columns:1fr!important}
+ body.diag-page #results .rd-radar{height:300px!important}
+ body.diag-page #results .rd-radar svg{width:min(100%,360px)!important}
+ body.diag-page #results .rd-performance-grid{padding:15px 12px!important}
+ body.diag-page #results .dimension-bar-row{grid-template-columns:minmax(110px,42%) minmax(45px,1fr) 32px!important;gap:7px!important}
+ body.diag-page #results .dimension-bar-label{font-size:.68rem!important}
+ body.diag-page .diagnostic-ip-global{padding:6px 8px!important;gap:5px!important}
+}
 </style></head>
 <body class="diag-page">
 <header class="site-header diagnostic-header">
@@ -609,5 +655,5 @@ body.diag-page #results[hidden]{display:none!important}
     The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited. All rights reserved. No part of this tool or its underlying framework may be copied, reproduced, adapted, distributed, republished, or commercially reused without prior written consent, except where permitted by applicable law.
   </div>
 </div></main>
-<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=14"></script>
+<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=15"></script>
 </body></html>
