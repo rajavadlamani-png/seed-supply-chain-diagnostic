@@ -60,6 +60,14 @@
   body.diag-active .diag-shell{padding-top:18px}
   body.diag-active .diag-question-card{overflow:visible}
 }
+
+/* Standalone diagnostic: never use the long Sage Harvest site navigation */
+body.diag-page .site-header{height:64px;min-height:64px;justify-content:space-between}
+body.diag-page .site-header .nav{display:none}
+body.diag-page .site-header .nav-toggle{display:none}
+body.diag-page .site-header::after{content:'SEED SUPPLY CHAIN DIAGNOSTIC';margin-left:auto;margin-right:24px;font-size:.68rem;letter-spacing:.14em;font-weight:800;color:#68746b}
+body.diag-page .launch-notice,body.diag-page footer{display:none}
+@media(max-width:800px){body.diag-page .site-header::after{font-size:.58rem;letter-spacing:.08em;margin-right:12px}body.diag-page .site-header{padding:0 16px}}
 </style>
 </head>
 <body class="diag-page">
