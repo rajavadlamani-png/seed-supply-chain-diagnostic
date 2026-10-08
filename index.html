@@ -273,6 +273,72 @@ body.diag-page.diag-active .results-shell>.results-rights{display:none!important
  .results-visual-grid .radar{min-height:380px}
  .diagnostic-ip-footer{padding:9px 12px;font-size:.59rem}
 }
+</style><style>
+/* Final Results report layout — single centered column, no inherited workspace grid */
+body.diag-page #results{width:100%!important;display:block!important}
+body.diag-page #results .results-shell{width:100%!important;max-width:none!important;display:block!important}
+body.diag-page #results .results-hero{width:100%!important}
+body.diag-page #results .results-hero-inner{max-width:1180px!important;margin:0 auto!important}
+body.diag-page #results .diag-shell{
+ width:min(1180px,calc(100% - 48px))!important;
+ max-width:1180px!important;
+ margin:24px auto 0!important;
+ padding:0!important;
+ display:block!important;
+ box-sizing:border-box!important;
+}
+body.diag-page #results .result-tabs{
+ position:static!important;
+ width:100%!important;
+ max-width:none!important;
+ margin:0 0 18px!important;
+ box-sizing:border-box!important;
+ display:flex!important;
+ justify-content:flex-start!important;
+}
+body.diag-page #results .result-panel{
+ width:100%!important;
+ max-width:none!important;
+ margin:0!important;
+ box-sizing:border-box!important;
+}
+body.diag-page #results .results-visual-grid{
+ width:100%!important;
+ display:grid!important;
+ grid-template-columns:1fr 1.25fr!important;
+ gap:18px!important;
+ margin:0 0 18px!important;
+}
+body.diag-page #results .result-gauge-card,
+body.diag-page #results .radar{
+ width:100%!important;
+ box-sizing:border-box!important;
+ min-width:0!important;
+}
+body.diag-page #results .result-gauge-card{height:390px!important;min-height:390px!important}
+body.diag-page #results .radar{height:390px!important;min-height:390px!important}
+body.diag-page #results .radar #radar{height:315px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+body.diag-page #results .radar #radar svg{width:min(100%,380px)!important;height:auto!important;max-height:315px!important}
+body.diag-page #results .dimension-chart-card{width:100%!important;margin:0!important}
+body.diag-page #results .result-panel:not(#resultPanelOverview){width:100%!important}
+body.diag-page #results .result-panel:not(#resultPanelOverview)>.result-card,
+body.diag-page #results .result-panel:not(#resultPanelOverview)>.three-col,
+body.diag-page #results .result-panel:not(#resultPanelOverview)>.moves,
+body.diag-page #results .result-panel:not(#resultPanelOverview)>.result-cta{width:100%!important;box-sizing:border-box!important}
+body.diag-page #results .three-col{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:18px!important}
+body.diag-page #results .diagnostic-ip-footer{
+ position:static!important;
+ width:100%!important;
+ max-width:none!important;
+ margin:22px 0 0!important;
+ box-sizing:border-box!important;
+}
+@media(max-width:900px){
+ body.diag-page #results .diag-shell{width:min(100% - 28px,680px)!important}
+ body.diag-page #results .results-visual-grid{grid-template-columns:1fr!important}
+ body.diag-page #results .result-gauge-card,body.diag-page #results .radar{height:auto!important;min-height:360px!important}
+ body.diag-page #results .three-col{grid-template-columns:1fr!important}
+}
 </style></head>
 <body class="diag-page">
 <header class="site-header diagnostic-header">
@@ -314,5 +380,5 @@ body.diag-page.diag-active .results-shell>.results-rights{display:none!important
     The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited. All rights reserved. No part of this tool or its underlying framework may be copied, reproduced, adapted, distributed, republished, or commercially reused without prior written consent, except where permitted by applicable law.
   </div>
 </div></div></div></section></main>
-<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=10"></script>
+<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=11"></script>
 </body></html>
