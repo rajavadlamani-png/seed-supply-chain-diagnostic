@@ -152,6 +152,9 @@
     $('overallLabel').textContent=m;$('overallScore').textContent=overall.toFixed(2);$('overallCopy').textContent={Reactive:'Decisions mainly happen after problems emerge.',Structured:'Processes exist, but information and decision-making remain fragmented.',Integrated:'Functions and information are increasingly connected.',Intelligent:'Data actively supports forward-looking decisions.',Adaptive:'The supply chain continuously learns and adapts.'}[m];
     document.querySelectorAll('.maturity-track span').forEach(function(x){x.classList.toggle('active',x.textContent===m);});
     $('profileInsight').textContent=insight(ds);$('radar').innerHTML=radar(ds);
+    $('gaugeValue').textContent=overall.toFixed(2);$('gaugeLevel').textContent=m;
+    var circumference=2*Math.PI*82;$('gaugeProgress').style.strokeDasharray=circumference.toFixed(2);$('gaugeProgress').style.strokeDashoffset=(circumference-(overall/5)*circumference).toFixed(2);
+    $('dimensionBars').innerHTML=ds.map(function(d){return '<div class="dimension-bar-row"><span class="dimension-bar-label" title="'+d.name+'">'+d.name+'</span><div class="dimension-bar-track"><i class="dimension-bar-fill" style="width:'+((d.score/5)*100).toFixed(1)+'%"></i></div><strong class="dimension-bar-value">'+d.score.toFixed(1)+'</strong></div>';}).join('');
     $('dimensionList').innerHTML=ds.map(function(d){return '<div class="result-row"><span>'+d.name+'</span><strong>'+d.score.toFixed(1)+'</strong><em>'+level(d.score)+'</em></div>';}).join('');
     $('strongList').innerHTML=ranked.slice(0,3).map(function(d,i){return '<article><b>'+(i+1)+'</b><div><strong>'+d.name+'</strong><span>'+d.score.toFixed(1)+' · '+maturity(d.score)+'</span></div></article>';}).join('');
     var gaps=ranked.slice(-3).reverse();

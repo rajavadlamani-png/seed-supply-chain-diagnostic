@@ -144,6 +144,51 @@ body.diag-page .diagnostic-rights{display:none!important}
 </style><style>
 /* Ensure the wizard stages respect the HTML hidden state. */
 body.diag-page [hidden]{display:none!important}
+</style><style>
+/* Results visual system — restrained executive dashboard */
+.results-visual-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px;margin-top:18px}
+.result-card-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;margin-bottom:10px}
+.result-card-heading h2{margin:3px 0 0}
+.chart-caption{font-size:.68rem;color:#7a857d;white-space:nowrap;padding-top:3px}
+.result-gauge-card{display:flex;flex-direction:column;min-height:430px}
+.gauge-wrap{position:relative;width:230px;height:230px;margin:12px auto 4px}
+.gauge-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gauge-track{fill:none;stroke:#e6ebe4;stroke-width:13}
+.gauge-progress{fill:none;stroke:#2f7950;stroke-width:13;stroke-linecap:round;stroke-dasharray:515.22;stroke-dashoffset:515.22;transition:stroke-dashoffset 1s cubic-bezier(.22,.61,.36,1)}
+.gauge-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column}
+.gauge-center strong{font-size:3.1rem;line-height:1;letter-spacing:-.06em;color:#173b2c}
+.gauge-center span{font-size:.72rem;color:#7b857d;margin-top:4px}
+.gauge-center em{font-style:normal;font-size:.70rem;font-weight:800;letter-spacing:.10em;text-transform:uppercase;color:#8b7542;margin-top:10px}
+.gauge-scale{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-top:auto;padding-top:16px;border-top:1px solid #edf0eb}
+.gauge-scale span{text-align:center;font-size:.55rem;color:#7b857d;line-height:1.25}
+.gauge-scale span:nth-child(3){font-weight:800;color:#173b2c}
+.radar{min-height:430px}
+.radar svg{max-height:350px}
+.dimension-chart-card{margin-top:18px}
+.dimension-bars{display:flex;flex-direction:column;gap:11px}
+.dimension-bar-row{display:grid;grid-template-columns:190px 1fr 42px;gap:12px;align-items:center}
+.dimension-bar-label{font-size:.76rem;color:#526158;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dimension-bar-track{height:10px;background:#edf0eb;border-radius:99px;overflow:hidden}
+.dimension-bar-fill{height:100%;width:0;background:#2f7950;border-radius:99px;transition:width .7s cubic-bezier(.22,.61,.36,1)}
+.dimension-bar-value{text-align:right;font-size:.76rem;font-weight:800;color:#173b2c}
+@media(max-width:900px){
+ .results-visual-grid{grid-template-columns:1fr}
+ .result-gauge-card,.radar{min-height:0}
+ .gauge-wrap{width:210px;height:210px}
+}
+@media(max-width:600px){
+ .result-card-heading{display:block}
+ .chart-caption{display:block;margin-top:5px}
+ .dimension-bar-row{grid-template-columns:1fr 42px;gap:7px}
+ .dimension-bar-label{grid-column:1/-1}
+ .dimension-bar-track{grid-column:1}
+ .dimension-bar-value{grid-column:2;grid-row:2}
+}
+</style><style>
+/* Results navigation — visible only after completion */
+.results-shell .result-tabs{display:flex!important;gap:7px;flex-wrap:wrap;padding:6px;border:1px solid rgba(23,59,44,.10);border-radius:14px;background:#f0f2ec}
+.results-shell .result-tabs .diag-tab{padding:9px 13px;border-radius:9px;font-size:.68rem}
+.results-shell .result-tabs .diag-tab.active{background:#173b2c;color:#fff}
 </style></head>
 <body class="diag-page">
 <header class="site-header diagnostic-header">
@@ -156,6 +201,26 @@ body.diag-page [hidden]{display:none!important}
 <main>
 <section id="intro" class="diag-hero"><div class="diag-hero-inner"><p class="eyebrow">SAGE HARVEST LABS</p><h1>Seed Supply Chain <em>Diagnostic</em></h1><p class="diag-lead">How resilient is your seed supply chain? Assess maturity across planning, production, quality, inventory, traceability, decision intelligence and resilience.</p><div class="diag-stats"><div class="diag-stat"><strong>10</strong><span>Dimensions</span></div><div class="diag-stat"><strong>30</strong><span>Questions</span></div><div class="diag-stat"><strong>~7</strong><span>Minutes</span></div></div><button id="startBtn" class="diag-button" type="button">Begin Diagnostic →</button><p class="diag-note">Your responses generate an indicative maturity profile. No confidential company information is required.</p></div></section>
 <section id="diagnostic" class="diag-shell" hidden><div class="diag-workspace"><div class="diag-progress"><span id="qNumber" class="diag-progress-label">Question 1 of 30</span><div class="diag-progress-bar"><i id="progressFill"></i></div><span id="progressText" class="diag-progress-percent">0%</span></div><div class="diag-stage"><div class="diag-question-card"><div class="diag-question-meta"><span id="dimensionNo" class="diag-kicker">01</span><span id="dimensionName" class="diag-kicker">DEMAND &amp; MARKET PLANNING</span></div><h2 id="questionText"></h2><div id="options" class="diag-options"></div><div class="diag-why"><strong>Why we ask this</strong><span id="whyText"></span></div><div id="answerHint" class="answer-hint">Please select one maturity level to continue.</div><div class="diag-actions"><button id="backBtn" class="diag-button secondary" type="button">← Previous</button><button id="nextBtn" class="diag-button" type="button">Next Question →</button></div></div></div></div></section>
-<section id="results" hidden><div class="results-shell"><div class="results-hero"><div class="results-hero-inner"><div><p class="diag-kicker">YOUR SEED SUPPLY CHAIN PROFILE</p><h1 id="overallLabel">Integrated</h1><p id="overallCopy" class="results-copy"></p><div class="maturity-track"><span>Reactive</span><span>Structured</span><span>Integrated</span><span>Intelligent</span><span>Adaptive</span></div></div><div class="results-score"><span id="overallScore">3.42</span><small> / 5.00</small></div></div></div><div class="diag-shell"><div id="resultTabs" class="diag-tabs result-tabs" role="tablist" aria-label="Diagnostic results"></div><div id="resultPanelOverview" class="result-panel"><div class="result-card insight-band"><p class="diag-kicker">KEY STRATEGIC OBSERVATION</p><p id="profileInsight"></p></div><div class="results-grid"><div class="result-card radar"><h2>Supply Chain Maturity Map</h2><div id="radar"></div></div></div></div><div id="resultPanelDimensions" class="result-panel" hidden><div class="result-card"><h2>Your Maturity by Dimension</h2><div id="dimensionList"></div></div></div><div id="resultPanelInsights" class="result-panel" hidden><div class="three-col"><div class="result-card"><h2>Strongest Capabilities</h2><div id="strongList" class="result-list"></div></div><div class="result-card"><h2>Priority Gaps</h2><div id="gapList" class="result-list"></div></div><div class="result-card"><h2>Derived Insights</h2><div id="derivedList" class="derived-list"></div></div></div></div><div id="resultPanelMoves" class="result-panel" hidden><div class="result-card moves"><p class="diag-kicker">YOUR THREE MOVES</p><h2>Where to focus next</h2><div id="moveList"></div></div></div><div id="resultPanelEngage" class="result-panel" hidden><div class="result-cta"><div><p class="diag-kicker">WHERE SAGE HARVEST CAN HELP</p><h2>Turn the diagnostic into a deeper supply-chain review.</h2><p>A diagnostic provides an indicative maturity view. A confidential review can examine the underlying operating model, data and decision processes in greater depth.</p><p class="small-note">Puja can also explain the published Sage Harvest diagnostic framework.</p></div><a class="diag-button" href="https://rajavadlamani-png.github.io/Sage-Harvest/contact.html">Discuss Your Diagnostic →</a></div><div class="result-actions"><button id="printBtn" class="diag-button secondary" type="button">Print / Save Report</button><button id="saveBtn" class="diag-button secondary" type="button">Save Results</button><button id="restartBtn" class="diag-button secondary" type="button">Start Again</button><a class="diag-button secondary" href="https://rajavadlamani-png.github.io/Sage-Harvest/ai-puja.html">Ask Puja About the Framework</a></div></div></div></div><div class="diagnostic-rights results-rights" style="display:block!important;margin:18px 0 0;max-width:none"><strong>Proprietary Tool &amp; Intellectual Property</strong><p>The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited.</p><p>© 2026 Sage Harvest Agro Pvt. Limited. All rights reserved.</p></div></section></main>
-<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=6"></script>
+<section id="results" hidden><div class="results-shell"><div class="results-hero"><div class="results-hero-inner"><div><p class="diag-kicker">YOUR SEED SUPPLY CHAIN PROFILE</p><h1 id="overallLabel">Integrated</h1><p id="overallCopy" class="results-copy"></p><div class="maturity-track"><span>Reactive</span><span>Structured</span><span>Integrated</span><span>Intelligent</span><span>Adaptive</span></div></div><div class="results-score"><span id="overallScore">3.42</span><small> / 5.00</small></div></div></div><div class="diag-shell"><div id="resultTabs" class="diag-tabs result-tabs" role="tablist" aria-label="Diagnostic results"></div><div id="resultPanelOverview" class="result-panel">
+<div class="result-card insight-band"><p class="diag-kicker">KEY STRATEGIC OBSERVATION</p><p id="profileInsight"></p></div>
+<div class="results-visual-grid">
+  <div class="result-card result-gauge-card">
+    <div class="result-card-heading"><div><p class="diag-kicker">OVERALL MATURITY</p><h2>Supply Chain Maturity</h2></div><span class="chart-caption">Indicative score</span></div>
+    <div class="gauge-wrap">
+      <svg id="overallGauge" viewBox="0 0 220 220" role="img" aria-label="Overall maturity score">
+        <circle class="gauge-track" cx="110" cy="110" r="82"></circle>
+        <circle id="gaugeProgress" class="gauge-progress" cx="110" cy="110" r="82"></circle>
+      </svg>
+      <div class="gauge-center"><strong id="gaugeValue">0.00</strong><span>/ 5.00</span><em id="gaugeLevel">Integrated</em></div>
+    </div>
+    <div class="gauge-scale"><span>Reactive</span><span>Structured</span><span>Integrated</span><span>Intelligent</span><span>Adaptive</span></div>
+  </div>
+  <div class="result-card radar"><div class="result-card-heading"><div><p class="diag-kicker">CAPABILITY PROFILE</p><h2>Maturity Map</h2></div><span class="chart-caption">10 dimensions</span></div><div id="radar"></div></div>
+</div>
+<div class="result-card dimension-chart-card">
+  <div class="result-card-heading"><div><p class="diag-kicker">DIMENSION PERFORMANCE</p><h2>Where capability stands today</h2></div><span class="chart-caption">1.0 — 5.0 maturity scale</span></div>
+  <div id="dimensionBars" class="dimension-bars"></div>
+</div>
+</div><div id="resultPanelDimensions" class="result-panel" hidden><div class="result-card"><h2>Your Maturity by Dimension</h2><div id="dimensionList"></div></div></div><div id="resultPanelInsights" class="result-panel" hidden><div class="three-col"><div class="result-card"><h2>Strongest Capabilities</h2><div id="strongList" class="result-list"></div></div><div class="result-card"><h2>Priority Gaps</h2><div id="gapList" class="result-list"></div></div><div class="result-card"><h2>Derived Insights</h2><div id="derivedList" class="derived-list"></div></div></div></div><div id="resultPanelMoves" class="result-panel" hidden><div class="result-card moves"><p class="diag-kicker">YOUR THREE MOVES</p><h2>Where to focus next</h2><div id="moveList"></div></div></div><div id="resultPanelEngage" class="result-panel" hidden><div class="result-cta"><div><p class="diag-kicker">WHERE SAGE HARVEST CAN HELP</p><h2>Turn the diagnostic into a deeper supply-chain review.</h2><p>A diagnostic provides an indicative maturity view. A confidential review can examine the underlying operating model, data and decision processes in greater depth.</p><p class="small-note">Puja can also explain the published Sage Harvest diagnostic framework.</p></div><a class="diag-button" href="https://rajavadlamani-png.github.io/Sage-Harvest/contact.html">Discuss Your Diagnostic →</a></div><div class="result-actions"><button id="printBtn" class="diag-button secondary" type="button">Print / Save Report</button><button id="saveBtn" class="diag-button secondary" type="button">Save Results</button><button id="restartBtn" class="diag-button secondary" type="button">Start Again</button><a class="diag-button secondary" href="https://rajavadlamani-png.github.io/Sage-Harvest/ai-puja.html">Ask Puja About the Framework</a></div></div></div></div><div class="diagnostic-rights results-rights" style="display:block!important;margin:18px 0 0;max-width:none"><strong>Proprietary Tool &amp; Intellectual Property</strong><p>The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited.</p><p>© 2026 Sage Harvest Agro Pvt. Limited. All rights reserved.</p></div></section></main>
+<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=7"></script>
 </body></html>
