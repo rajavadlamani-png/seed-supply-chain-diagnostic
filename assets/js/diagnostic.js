@@ -97,7 +97,7 @@
   function renderQuestion(){
     var q=questions[state.i], d=dimensions.filter(function(x){return x.key===q[0];})[0];
     $('qNumber').textContent='Question '+(state.i+1)+' of 30';
-    $('progressText').textContent=Math.round((state.i+1)/30*100)+'%';
+    $('progressText').textContent=Math.round((state.i+1)/30*100)+'% complete';
     $('progressFill').style.width=((state.i+1)/30*100)+'%';
     var di=dimensions.indexOf(d);
     $('dimensionNo').textContent=String(di+1).padStart(2,'0');
