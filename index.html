@@ -25,6 +25,41 @@
 /* Viewport-first question workspace */
 @media(min-width:801px){body.diag-page{overflow-x:hidden}.diag-shell{height:calc(100vh - 118px);min-height:650px;box-sizing:border-box;padding:22px 24px 26px;display:flex;align-items:center}.diag-workspace{width:100%}.diag-progress{margin-bottom:14px}.diag-question-card{padding:24px 34px;max-height:calc(100vh - 245px);box-sizing:border-box;overflow:hidden}.diag-question-card h2{font-size:clamp(1.55rem,2.7vw,2.25rem);margin:8px 0 17px}.diag-options{gap:7px}.diag-option{padding:10px 13px}.diag-option small{line-height:1.3}.diag-why{margin-top:11px;padding:10px 14px}.diag-actions{margin-top:13px}.diagnostic-rights{margin-top:12px}}
 @media(max-width:800px){.diag-shell{padding-top:22px}.diag-question-card{overflow:visible}}
+
+/* Clean assessment mode: compact app navigation + readable single-view workspace */
+@media(min-width:801px){
+  body.diag-active{overflow:hidden;height:100vh}
+  body.diag-active .site-header{height:64px;min-height:64px}
+  body.diag-active .site-header .nav{display:none}
+  body.diag-active .site-header .nav-toggle{display:none}
+  body.diag-active .site-header{justify-content:space-between}
+  body.diag-active .site-header::after{content:'SEED SUPPLY CHAIN DIAGNOSTIC';margin-left:auto;margin-right:24px;font-size:.68rem;letter-spacing:.14em;font-weight:800;color:#68746b}
+  body.diag-active .launch-notice,body.diag-active footer{display:none}
+  body.diag-active main{height:calc(100vh - 64px)}
+  body.diag-active #diagnostic{height:100%;min-height:0;padding:18px 24px;box-sizing:border-box;display:flex;align-items:center}
+  body.diag-active .diag-workspace{max-width:1040px}
+  body.diag-active .diag-progress{margin-bottom:12px}
+  body.diag-active .diag-question-card{max-width:1040px;padding:25px 32px;max-height:none;overflow:visible;border-radius:20px}
+  body.diag-active .diag-question-card h2{font-size:clamp(1.45rem,2.2vw,2rem);line-height:1.2;margin:8px 0 15px;max-width:940px}
+  body.diag-active .diag-options{grid-template-columns:1fr 1fr;gap:8px}
+  body.diag-active .diag-option{min-height:68px;box-sizing:border-box;padding:9px 12px;align-items:start}
+  body.diag-active .diag-option:last-child{grid-column:1/-1}
+  body.diag-active .diag-option strong{font-size:.86rem}
+  body.diag-active .diag-option small{font-size:.72rem;line-height:1.28;margin-top:3px}
+  body.diag-active .option-number{width:28px;height:28px;font-size:.8rem}
+  body.diag-active .diag-why{margin-top:11px;padding:9px 13px;font-size:.76rem;line-height:1.35}
+  body.diag-active .diag-why strong{display:inline;margin-right:6px}
+  body.diag-active .diag-actions{margin-top:12px}
+  body.diag-active .diagnostic-rights{display:none}
+}
+@media(max-width:800px){
+  body.diag-active .launch-notice{display:none}
+  body.diag-active .site-header .nav{display:none}
+  body.diag-active .site-header{justify-content:space-between}
+  body.diag-active main{min-height:calc(100vh - 64px)}
+  body.diag-active .diag-shell{padding-top:18px}
+  body.diag-active .diag-question-card{overflow:visible}
+}
 </style>
 </head>
 <body class="diag-page">
@@ -35,5 +70,5 @@
 <section id="diagnostic" class="diag-shell" hidden><div class="diag-workspace"><div class="diag-progress"><span id="qNumber" class="diag-progress-label">Question 1 of 30</span><div class="diag-progress-bar"><i id="progressFill"></i></div><span id="progressText" class="diag-progress-percent">0%</span></div><div class="diag-stage"><div class="diag-question-card"><div class="diag-question-meta"><span id="dimensionNo" class="diag-kicker">01</span><span id="dimensionName" class="diag-kicker">DEMAND &amp; MARKET PLANNING</span></div><h2 id="questionText"></h2><div id="options" class="diag-options"></div><div class="diag-why"><strong>Why we ask this</strong><span id="whyText"></span></div><div id="answerHint" class="answer-hint">Please select one maturity level to continue.</div><div class="diag-actions"><button id="backBtn" class="diag-button secondary" type="button">← Previous</button><button id="nextBtn" class="diag-button" type="button">Next Question →</button></div></div></div></div></section>
 <section id="results" hidden><div class="results-shell"><div class="results-hero"><div class="results-hero-inner"><div><p class="diag-kicker">YOUR SEED SUPPLY CHAIN PROFILE</p><h1 id="overallLabel">Integrated</h1><p id="overallCopy" class="results-copy"></p><div class="maturity-track"><span>Reactive</span><span>Structured</span><span>Integrated</span><span>Intelligent</span><span>Adaptive</span></div></div><div class="results-score"><span id="overallScore">3.42</span><small> / 5.00</small></div></div></div><div class="diag-shell"><div id="resultTabs" class="diag-tabs result-tabs" role="tablist" aria-label="Diagnostic results"></div><div id="resultPanelOverview" class="result-panel"><div class="result-card insight-band"><p class="diag-kicker">KEY STRATEGIC OBSERVATION</p><p id="profileInsight"></p></div><div class="results-grid"><div class="result-card radar"><h2>Supply Chain Maturity Map</h2><div id="radar"></div></div></div></div><div id="resultPanelDimensions" class="result-panel" hidden><div class="result-card"><h2>Your Maturity by Dimension</h2><div id="dimensionList"></div></div></div><div id="resultPanelInsights" class="result-panel" hidden><div class="three-col"><div class="result-card"><h2>Strongest Capabilities</h2><div id="strongList" class="result-list"></div></div><div class="result-card"><h2>Priority Gaps</h2><div id="gapList" class="result-list"></div></div><div class="result-card"><h2>Derived Insights</h2><div id="derivedList" class="derived-list"></div></div></div></div><div id="resultPanelMoves" class="result-panel" hidden><div class="result-card moves"><p class="diag-kicker">YOUR THREE MOVES</p><h2>Where to focus next</h2><div id="moveList"></div></div></div><div id="resultPanelEngage" class="result-panel" hidden><div class="result-cta"><div><p class="diag-kicker">WHERE SAGE HARVEST CAN HELP</p><h2>Turn the diagnostic into a deeper supply-chain review.</h2><p>A diagnostic provides an indicative maturity view. A confidential review can examine the underlying operating model, data and decision processes in greater depth.</p><p class="small-note">Puja can also explain the published Sage Harvest diagnostic framework.</p></div><a class="diag-button" href="https://rajavadlamani-png.github.io/Sage-Harvest/contact.html">Discuss Your Diagnostic →</a></div><div class="result-actions"><button id="printBtn" class="diag-button secondary" type="button">Print / Save Report</button><button id="saveBtn" class="diag-button secondary" type="button">Save Results</button><button id="restartBtn" class="diag-button secondary" type="button">Start Again</button><a class="diag-button secondary" href="https://rajavadlamani-png.github.io/Sage-Harvest/ai-puja.html">Ask Puja About the Framework</a></div></div></div></div></section></main>
 <footer><div><strong>SAGE HARVEST</strong><p>Seed Supply Chain. Reimagined.</p></div><div class="footer-columns"><div class="footer-column"><strong>Explore</strong><a href="https://rajavadlamani-png.github.io/Sage-Harvest/services.html">Services</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/digital-ai.html">Digital &amp; AI</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/sustainability.html">Sustainability</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/case-studies.html">Perspectives</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/insights.html">Insights</a></div><div class="footer-column"><strong>Company</strong><a href="https://rajavadlamani-png.github.io/Sage-Harvest/about.html">About</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/founder.html">Founder</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/labs.html">Labs</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/contact.html">Contact</a></div><div class="footer-column"><strong>Trust &amp; Governance</strong><a href="https://rajavadlamani-png.github.io/Sage-Harvest/privacy.html">Privacy</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/confidentiality.html">Confidentiality</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/professional-standards.html">Professional Standards</a><a href="https://rajavadlamani-png.github.io/Sage-Harvest/ai-puja.html">AI &amp; Puja</a></div></div><div class="diagnostic-rights"><strong>Proprietary Tool &amp; Intellectual Property</strong><p>The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited.</p><p>© 2026 Sage Harvest Agro Pvt. Limited. All rights reserved. No part of this tool or its underlying framework may be copied, reproduced, adapted, distributed, republished, or commercially reused without prior written consent of Sage Harvest Agro Pvt. Limited, except where permitted by applicable law.</p></div><p class="copyright">© 2026 Sage Harvest Agro Pvt. Limited · Seed Supply Chain Diagnostic — Proprietary Tool</p></footer>
-<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=2"></script>
+<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=3"></script>
 </body></html>

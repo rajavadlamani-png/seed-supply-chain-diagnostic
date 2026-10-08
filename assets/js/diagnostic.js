@@ -115,7 +115,7 @@
     $('backBtn').disabled=state.i===0;
     $('nextBtn').textContent=state.i===29?'View My Results →':'Next Question →';
   }
-  function start(){ $('intro').hidden=true;$('diagnostic').hidden=false;renderQuestion();$('diagnostic').scrollIntoView({behavior:'smooth',block:'start'}); }
+  function start(){ document.body.classList.add('diag-active'); $('intro').hidden=true;$('diagnostic').hidden=false;renderQuestion(); }
   function next(){
     if(state.answers[state.i]==null){$('answerHint').classList.add('visible');return;}
     if(state.i<29){state.i++;renderQuestion();}else results();
@@ -146,6 +146,7 @@
     return 'Your capability profile is relatively balanced. The next opportunity is to strengthen the lowest-scoring dimensions while building on your existing operating foundation.';
   }
   function results(){
+    document.body.classList.remove('diag-active');
     var ds=dimScores(), overall=ds.reduce(function(s,d){return s+d.score*d.weight;},0), m=maturity(overall), ranked=ds.slice().sort(function(a,b){return b.score-a.score;});
     $('diagnostic').hidden=true;$('results').hidden=false;renderResultTabs();switchResultTab('overview');
     $('overallLabel').textContent=m;$('overallScore').textContent=overall.toFixed(2);$('overallCopy').textContent={Reactive:'Decisions mainly happen after problems emerge.',Structured:'Processes exist, but information and decision-making remain fragmented.',Integrated:'Functions and information are increasingly connected.',Intelligent:'Data actively supports forward-looking decisions.',Adaptive:'The supply chain continuously learns and adapts.'}[m];
@@ -166,7 +167,7 @@
     localStorage.setItem('sageHarvestDiagnosticLast',JSON.stringify({overall:overall,level:m,scores:ds,answers:state.answers,completedAt:new Date().toISOString()}));
     $('results').scrollIntoView({behavior:'smooth',block:'start'});
   }
-  function restart(){state.i=0;state.answers=new Array(30).fill(null);$('results').hidden=true;$('intro').hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+  function restart(){document.body.classList.remove('diag-active');state.i=0;state.answers=new Array(30).fill(null);$('results').hidden=true;$('diagnostic').hidden=true;$('intro').hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
   function printReport(){window.print();}
   function saveResults(){var raw=localStorage.getItem('sageHarvestDiagnosticLast');if(!raw)return;var o=JSON.parse(raw),lines=['SAGE HARVEST — SEED SUPPLY CHAIN DIAGNOSTIC','','Overall maturity: '+o.level+' — '+o.overall.toFixed(2)+'/5',''].concat(o.scores.map(function(d){return d.name+': '+d.score.toFixed(1)+' — '+level(d.score);}));var blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sage-harvest-seed-supply-chain-diagnostic.txt';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);}
   document.addEventListener('DOMContentLoaded',function(){
