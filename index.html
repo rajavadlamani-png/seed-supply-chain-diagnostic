@@ -339,6 +339,44 @@ body.diag-page #results .diagnostic-ip-footer{
  body.diag-page #results .result-gauge-card,body.diag-page #results .radar{height:auto!important;min-height:360px!important}
  body.diag-page #results .three-col{grid-template-columns:1fr!important}
 }
+</style><style>
+/* Shared application IP footer: visible through the assessment and Results experience */
+body.diag-page .diagnostic-ip-global{
+  display:none!important;
+  position:fixed!important;
+  left:0!important;right:0!important;bottom:0!important;
+  z-index:20!important;
+  min-height:34px!important;
+  box-sizing:border-box!important;
+  padding:7px 18px!important;
+  border-top:1px solid rgba(23,59,44,.10)!important;
+  background:rgba(250,250,247,.96)!important;
+  color:#78827b!important;
+  font-size:.60rem!important;
+  line-height:1.35!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  flex-wrap:wrap!important;
+  backdrop-filter:blur(8px)!important;
+}
+body.diag-page.diag-active .diagnostic-ip-global,
+body.diag-page #results:not([hidden])~.diagnostic-ip-global{display:flex!important}
+body.diag-page.diag-active main{padding-bottom:38px!important;box-sizing:border-box!important}
+body.diag-page .diagnostic-ip-global span:first-child{font-weight:800!important;color:#59665d!important}
+body.diag-page .diagnostic-ip-global button{
+  border:0!important;background:none!important;padding:0!important;color:#59665d!important;
+  font:inherit!important;font-weight:800!important;text-decoration:underline!important;
+  text-underline-offset:2px!important;cursor:pointer!important
+}
+body.diag-page .diagnostic-ip-global .diagnostic-ip-details{
+  flex-basis:100%!important;max-width:980px!important;margin:2px auto 0!important;
+  padding:8px 12px!important;background:#f4f5f0!important;border-radius:8px!important;
+  color:#69746c!important;font-size:.60rem!important;text-align:center!important
+}
+@media(max-width:700px){
+ body.diag-page .diagnostic-ip-global{font-size:.56rem!important;padding:6px 10px!important}
+}
 </style></head>
 <body class="diag-page">
 <header class="site-header diagnostic-header">
@@ -371,14 +409,13 @@ body.diag-page #results .diagnostic-ip-footer{
   <div class="result-card-heading"><div><p class="diag-kicker">DIMENSION PERFORMANCE</p><h2>Where capability stands today</h2></div><span class="chart-caption">1.0 — 5.0 maturity scale</span></div>
   <div id="dimensionBars" class="dimension-bars"></div>
 </div>
-</div><div id="resultPanelDimensions" class="result-panel" hidden><div class="result-card"><h2>Your Maturity by Dimension</h2><div id="dimensionList"></div></div></div><div id="resultPanelInsights" class="result-panel" hidden><div class="three-col"><div class="result-card"><h2>Strongest Capabilities</h2><div id="strongList" class="result-list"></div></div><div class="result-card"><h2>Priority Gaps</h2><div id="gapList" class="result-list"></div></div><div class="result-card"><h2>Derived Insights</h2><div id="derivedList" class="derived-list"></div></div></div></div><div id="resultPanelMoves" class="result-panel" hidden><div class="result-card moves"><p class="diag-kicker">YOUR THREE MOVES</p><h2>Where to focus next</h2><div id="moveList"></div></div></div><div id="resultPanelEngage" class="result-panel" hidden><div class="result-cta"><div><p class="diag-kicker">WHERE SAGE HARVEST CAN HELP</p><h2>Turn the diagnostic into a deeper supply-chain review.</h2><p>A diagnostic provides an indicative maturity view. A confidential review can examine the underlying operating model, data and decision processes in greater depth.</p><p class="small-note">Puja can also explain the published Sage Harvest diagnostic framework.</p></div><a class="diag-button" href="https://rajavadlamani-png.github.io/Sage-Harvest/contact.html">Discuss Your Diagnostic →</a></div><div class="result-actions"><button id="printBtn" class="diag-button secondary" type="button">Print / Save Report</button><button id="saveBtn" class="diag-button secondary" type="button">Save Results</button><button id="restartBtn" class="diag-button secondary" type="button">Start Again</button><a class="diag-button secondary" href="https://rajavadlamani-png.github.io/Sage-Harvest/ai-puja.html">Ask Puja About the Framework</a></div></div><div class="diagnostic-ip-footer" id="diagnosticIpFooter">
-  <span>© 2026 Sage Harvest Agro Pvt. Limited</span>
-  <span>•</span>
+</div><div id="resultPanelDimensions" class="result-panel" hidden><div class="result-card"><h2>Your Maturity by Dimension</h2><div id="dimensionList"></div></div></div><div id="resultPanelInsights" class="result-panel" hidden><div class="three-col"><div class="result-card"><h2>Strongest Capabilities</h2><div id="strongList" class="result-list"></div></div><div class="result-card"><h2>Priority Gaps</h2><div id="gapList" class="result-list"></div></div><div class="result-card"><h2>Derived Insights</h2><div id="derivedList" class="derived-list"></div></div></div></div><div id="resultPanelMoves" class="result-panel" hidden><div class="result-card moves"><p class="diag-kicker">YOUR THREE MOVES</p><h2>Where to focus next</h2><div id="moveList"></div></div></div><div id="resultPanelEngage" class="result-panel" hidden><div class="result-cta"><div><p class="diag-kicker">WHERE SAGE HARVEST CAN HELP</p><h2>Turn the diagnostic into a deeper supply-chain review.</h2><p>A diagnostic provides an indicative maturity view. A confidential review can examine the underlying operating model, data and decision processes in greater depth.</p><p class="small-note">Puja can also explain the published Sage Harvest diagnostic framework.</p></div><a class="diag-button" href="https://rajavadlamani-png.github.io/Sage-Harvest/contact.html">Discuss Your Diagnostic →</a></div><div class="result-actions"><button id="printBtn" class="diag-button secondary" type="button">Print / Save Report</button><button id="saveBtn" class="diag-button secondary" type="button">Save Results</button><button id="restartBtn" class="diag-button secondary" type="button">Start Again</button><a class="diag-button secondary" href="https://rajavadlamani-png.github.io/Sage-Harvest/ai-puja.html">Ask Puja About the Framework</a></div></div></div></div></div></section><div class="diagnostic-ip-footer diagnostic-ip-global" id="diagnosticIpFooter">
+  <span>© 2026 Sage Harvest Agro Pvt. Limited</span><span>•</span>
   <span>Proprietary diagnostic framework, scoring methodology &amp; analytical logic</span>
   <button type="button" id="ipDetailsBtn" aria-expanded="false">IP &amp; usage notice</button>
   <div class="diagnostic-ip-details" id="ipDetails" hidden>
     The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited. All rights reserved. No part of this tool or its underlying framework may be copied, reproduced, adapted, distributed, republished, or commercially reused without prior written consent, except where permitted by applicable law.
   </div>
-</div></div></div></section></main>
-<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=11"></script>
+</div></main>
+<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=12"></script>
 </body></html>
