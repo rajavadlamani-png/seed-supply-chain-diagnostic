@@ -149,8 +149,8 @@
     document.body.classList.remove('diag-active');
     var ds=dimScores(), overall=ds.reduce(function(s,d){return s+d.score*d.weight;},0), m=maturity(overall), ranked=ds.slice().sort(function(a,b){return b.score-a.score;});
     $('diagnostic').hidden=true;$('results').hidden=false;$('diagnostic').style.display='none';$('results').style.display='block';
-    $('overallLabel').textContent=m;$('overallScore').textContent=overall.toFixed(2);$('overallCopy').textContent={Reactive:'Decisions mainly happen after problems emerge.',Structured:'Processes exist, but information and decision-making remain fragmented.',Integrated:'Functions and information are increasingly connected.',Intelligent:'Data actively supports forward-looking decisions.',Adaptive:'The supply chain continuously learns and adapts.'}[m];
-    document.querySelectorAll('.maturity-track span').forEach(function(x){x.classList.toggle('active',x.textContent===m);});
+    $('overallLabel').textContent=m;$('overallScore').textContent=overall.toFixed(2);$('heroMaturity').textContent=m;$('overallCopy').textContent={Reactive:'Decisions mainly happen after problems emerge.',Structured:'Processes exist, but information and decision-making remain fragmented.',Integrated:'Functions and information are increasingly connected.',Intelligent:'Data actively supports forward-looking decisions.',Adaptive:'The supply chain continuously learns and adapts.'}[m];
+    document.querySelectorAll('.maturity-track span,.rd-maturity-track span').forEach(function(x){x.classList.toggle('active',x.textContent===m);});
     $('profileInsight').textContent=insight(ds);$('radar').innerHTML=radar(ds);
     $('gaugeValue').textContent=overall.toFixed(2);$('gaugeLevel').textContent=m;
     var circumference=2*Math.PI*82;$('gaugeProgress').style.strokeDasharray=circumference.toFixed(2);$('gaugeProgress').style.strokeDashoffset=(circumference-(overall/5)*circumference).toFixed(2);
