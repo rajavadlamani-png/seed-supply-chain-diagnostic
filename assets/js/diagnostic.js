@@ -94,25 +94,6 @@
       return {key:d.key,name:d.name,short:d.short,weight:d.weight,score:s};
     });
   }
-  function renderDimensionTabs(){
-    var box=$('dimensionTabs');box.innerHTML='';
-    dimensions.forEach(function(d,di){
-      var b=document.createElement('button');b.type='button';b.className='diag-tab';b.setAttribute('role','tab');b.textContent=(di+1)+'. '+d.name;
-      var first=di*3,done=state.answers.slice(first,first+3).every(function(v){return v!=null;});
-      if(done)b.classList.add('complete');
-      if(Math.floor(state.i/3)===di)b.classList.add('active');
-      b.addEventListener('click',function(){state.i=di*3;renderQuestion();});box.appendChild(b);
-    });
-  }
-  function renderQuestionTabs(){
-    var box=$('questionTabs'),di=Math.floor(state.i/3),start=di*3;box.innerHTML='';
-    for(var q=0;q<3;q++){
-      var b=document.createElement('button');b.type='button';b.className='diag-question-tab';b.setAttribute('role','tab');b.textContent='Q'+(q+1);
-      if(state.i===start+q)b.classList.add('active');
-      if(state.answers[start+q]!=null)b.classList.add('complete');
-      (function(idx){b.addEventListener('click',function(){state.i=idx;renderQuestion();});})(start+q);box.appendChild(b);
-    }
-  }
   function renderQuestion(){
     var q=questions[state.i], d=dimensions.filter(function(x){return x.key===q[0];})[0];
     $('qNumber').textContent='Question '+(state.i+1)+' of 30';
@@ -121,10 +102,6 @@
     var di=dimensions.indexOf(d);
     $('dimensionNo').textContent=String(di+1).padStart(2,'0');
     $('dimensionName').textContent=d.name;
-    $('dimensionStep').textContent=(di+1)+' of 10';
-    $('dimensionTitle').textContent=d.name;
-    $('prevDimension').disabled=di===0;
-    $('nextDimension').disabled=di===9;
     $('questionText').textContent=q[1];
     $('whyText').textContent=why[q[0]];
     var box=$('options');box.innerHTML='';
@@ -132,10 +109,9 @@
       var label=document.createElement('label');label.className='diag-option'+(state.answers[state.i]===n?' selected':'');
       label.innerHTML='<input type="radio" name="answer" value="'+n+'"><span class="option-number">'+n+'</span><span><strong>'+levelNames[n-1]+'</strong><small>'+q[n+1]+'</small></span>';
       label.querySelector('input').checked=state.answers[state.i]===n;
-      label.querySelector('input').addEventListener('change',(function(value,el){return function(){state.answers[state.i]=value;box.querySelectorAll('.diag-option').forEach(function(x){x.classList.remove('selected');});el.classList.add('selected');$('answerHint').classList.remove('visible');renderQuestionTabs();renderDimensionTabs();};})(n,label));
+      label.querySelector('input').addEventListener('change',(function(value,el){return function(){state.answers[state.i]=value;box.querySelectorAll('.diag-option').forEach(function(x){x.classList.remove('selected');});el.classList.add('selected');$('answerHint').classList.remove('visible');};})(n,label));
       box.appendChild(label);
     }
-    renderDimensionTabs();renderQuestionTabs();
     $('backBtn').disabled=state.i===0;
     $('nextBtn').textContent=state.i===29?'View My Results →':'Next Question →';
   }
@@ -145,8 +121,6 @@
     if(state.i<29){state.i++;renderQuestion();}else results();
   }
   function back(){if(state.i>0){state.i--;renderQuestion();}}
-  function prevDimension(){var di=Math.floor(state.i/3);if(di>0){state.i=(di-1)*3;renderQuestion();}}
-  function nextDimension(){var di=Math.floor(state.i/3);if(di<9){state.i=(di+1)*3;renderQuestion();}}
   function switchResultTab(key){
     [['overview','Overview'],['dimensions','Dimensions'],['insights','Insights'],['moves','Moves'],['engage','Engage']].forEach(function(item){var el=$('resultPanel'+item[1]);if(el)el.hidden=item[0]!==key;});
     document.querySelectorAll('#resultTabs .diag-tab').forEach(function(b){b.classList.toggle('active',b.getAttribute('data-tab')===key);});
@@ -196,6 +170,6 @@
   function printReport(){window.print();}
   function saveResults(){var raw=localStorage.getItem('sageHarvestDiagnosticLast');if(!raw)return;var o=JSON.parse(raw),lines=['SAGE HARVEST — SEED SUPPLY CHAIN DIAGNOSTIC','','Overall maturity: '+o.level+' — '+o.overall.toFixed(2)+'/5',''].concat(o.scores.map(function(d){return d.name+': '+d.score.toFixed(1)+' — '+level(d.score);}));var blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='sage-harvest-seed-supply-chain-diagnostic.txt';a.click();setTimeout(function(){URL.revokeObjectURL(a.href);},1000);}
   document.addEventListener('DOMContentLoaded',function(){
-    $('startBtn').addEventListener('click',start);$('nextBtn').addEventListener('click',next);$('backBtn').addEventListener('click',back);$('prevDimension').addEventListener('click',prevDimension);$('nextDimension').addEventListener('click',nextDimension);$('restartBtn').addEventListener('click',restart);$('printBtn').addEventListener('click',printReport);$('saveBtn').addEventListener('click',saveResults);
+    $('startBtn').addEventListener('click',start);$('nextBtn').addEventListener('click',next);$('backBtn').addEventListener('click',back);$('restartBtn').addEventListener('click',restart);$('printBtn').addEventListener('click',printReport);$('saveBtn').addEventListener('click',saveResults);
   });
 })();
