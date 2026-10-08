@@ -129,12 +129,12 @@
     var box=$('resultTabs');box.innerHTML='';[['Overview','overview'],['Dimension Scores','dimensions'],['Insights & Gaps','insights'],['Three Moves','moves'],['Engage','engage']].forEach(function(item,i){var b=document.createElement('button');b.type='button';b.className='diag-tab'+(i===0?' active':'');b.textContent=item[0];b.setAttribute('data-tab',item[1]);b.addEventListener('click',function(){switchResultTab(item[1]);});box.appendChild(b);});
   }
   function radar(ds){
-    var cx=180,cy=180,r=122,n=ds.length,points=function(vals,scale){return vals.map(function(v,i){var a=-Math.PI/2+i*2*Math.PI/n,rr=r*(v/scale);return (cx+Math.cos(a)*rr).toFixed(1)+','+(cy+Math.sin(a)*rr).toFixed(1);}).join(' ');};
-    var out='<svg viewBox="0 0 360 360" aria-label="Supply chain maturity radar chart" role="img"><polygon points="'+points(new Array(n).fill(5),5)+'" fill="none" stroke="rgba(23,59,44,.16)"/>';
+    var cx=200,cy=190,r=112,n=ds.length,points=function(vals,scale){return vals.map(function(v,i){var a=-Math.PI/2+i*2*Math.PI/n,rr=r*(v/scale);return (cx+Math.cos(a)*rr).toFixed(1)+','+(cy+Math.sin(a)*rr).toFixed(1);}).join(' ');};
+    var out='<svg viewBox="0 0 400 380" aria-label="Supply chain maturity radar chart" role="img"><polygon points="'+points(new Array(n).fill(5),5)+'" fill="none" stroke="rgba(23,59,44,.16)"/>';
     [1,2,3,4].forEach(function(v){out+='<polygon points="'+points(new Array(n).fill(v),5)+'" fill="none" stroke="rgba(23,59,44,.10)"/>';});
     ds.forEach(function(d,i){var a=-Math.PI/2+i*2*Math.PI/n,x=cx+Math.cos(a)*r,y=cy+Math.sin(a)*r;out+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="rgba(23,59,44,.10)"/>';});
     out+='<polygon points="'+points(ds.map(function(d){return d.score;}),5)+'" fill="rgba(47,121,80,.16)" stroke="#2f7950" stroke-width="2.5"/>';
-    ds.forEach(function(d,i){var a=-Math.PI/2+i*2*Math.PI/n,x=cx+Math.cos(a)*(r+20),y=cy+Math.sin(a)*(r+20);out+='<text x="'+x+'" y="'+y+'" text-anchor="'+(x<cx-8?'end':x>cx+8?'start':'middle')+'" dominant-baseline="middle">'+d.short+'</text>';});
+    ds.forEach(function(d,i){var a=-Math.PI/2+i*2*Math.PI/n,x=cx+Math.cos(a)*(r+31),y=cy+Math.sin(a)*(r+31);out+='<text x="'+x+'" y="'+y+'" text-anchor="'+(x<cx-8?'end':x>cx+8?'start':'middle')+'" dominant-baseline="middle">'+d.short+'</text>';});
     return out+'</svg>';
   }
   function insight(ds){
