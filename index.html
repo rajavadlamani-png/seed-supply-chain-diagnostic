@@ -540,6 +540,47 @@ body.diag-page .diagnostic-ip-global .diagnostic-ip-details:not([hidden]){max-he
  body.diag-page #results .dimension-bar-label{font-size:.68rem!important}
  body.diag-page .diagnostic-ip-global{padding:6px 8px!important;gap:5px!important}
 }
+</style><style>
+/* Question-screen visual refinement: restrained, functional, responsive */
+body.diag-page .diag-progress{gap:14px!important;margin-bottom:16px!important}
+body.diag-page .diag-progress-label{min-width:150px!important;font-size:.78rem!important;letter-spacing:.01em!important;color:#43574a!important}
+body.diag-page .diag-progress-bar{height:8px!important;background:#e3e8e1!important}
+body.diag-page .diag-progress-bar i{background:linear-gradient(90deg,#477c53,#78a36d)!important}
+body.diag-page .diag-progress-percent{min-width:78px!important;text-align:right!important;font-size:.72rem!important;color:#596b5e!important}
+body.diag-page .diag-question-card{border-color:rgba(23,59,44,.10)!important;box-shadow:0 18px 48px rgba(23,59,44,.065)!important}
+body.diag-page .diag-question-meta{gap:13px!important;margin-bottom:10px!important}
+body.diag-page #dimensionNo{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-width:25px!important;height:24px!important;padding:0 5px!important;border-radius:6px!important;background:#f4f0e5!important;color:#96783c!important;letter-spacing:.08em!important}
+body.diag-page #dimensionName{color:#8a7441!important;letter-spacing:.14em!important}
+body.diag-page .diag-question-card h2{line-height:1.22!important;letter-spacing:-.028em!important;margin-bottom:19px!important}
+body.diag-page .diag-options{gap:8px!important}
+body.diag-page .diag-option{position:relative!important;border:1px solid #e0e6df!important;background:#fff!important;transition:border-color .16s ease,background .16s ease,box-shadow .16s ease!important}
+body.diag-page .diag-option:hover{border-color:#91ad91!important;background:#fbfdf9!important;transform:none!important}
+body.diag-page .diag-option:focus-within{outline:2px solid rgba(63,125,82,.26)!important;outline-offset:2px!important}
+body.diag-page .diag-option.selected{border-color:#3f7d52!important;background:#eef5ed!important;box-shadow:inset 0 0 0 1px rgba(63,125,82,.22)!important}
+body.diag-page .diag-option.selected::after{content:'SELECTED';position:absolute;right:12px;top:9px;font-size:.53rem;font-weight:900;letter-spacing:.10em;color:#3f7d52}
+body.diag-page .diag-option.selected strong{color:#173b2c!important}
+body.diag-page .diag-option input{width:16px;height:16px;cursor:pointer}
+body.diag-page .option-number{width:29px;height:29px!important;transition:background .16s ease,color .16s ease}
+body.diag-page .diag-why{border:1px solid rgba(23,59,44,.07)!important;border-left:3px solid #c5a55c!important;background:#f8f8f3!important;line-height:1.5!important}
+body.diag-page .diag-actions{align-items:center!important}
+body.diag-page #backBtn:disabled{opacity:.48!important}
+body.diag-page #nextBtn{min-width:155px!important}
+body.diag-page .diagnostic-ip-global{box-shadow:0 -4px 18px rgba(23,59,44,.025)!important}
+@media(max-width:800px){
+ body.diag-page .diag-progress{display:grid!important;grid-template-columns:1fr auto!important;gap:8px 12px!important;margin-bottom:13px!important}
+ body.diag-page .diag-progress-label{min-width:0!important}
+ body.diag-page .diag-progress-bar{grid-column:1/-1!important;grid-row:2!important;width:100%!important}
+ body.diag-page .diag-progress-percent{grid-column:2!important;grid-row:1!important;min-width:0!important}
+ body.diag-page .diag-question-card h2{line-height:1.25!important}
+ body.diag-page .diag-option.selected::after{right:8px;top:7px;font-size:.47rem}
+ body.diag-page .diag-option{grid-template-columns:18px 30px minmax(0,1fr)!important;gap:9px!important}
+ body.diag-page .diag-option strong{padding-right:48px!important;font-size:.9rem!important}
+ body.diag-page .diag-option small{font-size:.75rem!important}
+ body.diag-page .diag-actions{gap:10px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ body.diag-page .diag-option,body.diag-page .option-number{transition:none!important}
+}
 </style></head>
 <body class="diag-page">
 <header class="site-header diagnostic-header">
@@ -655,5 +696,5 @@ body.diag-page .diagnostic-ip-global .diagnostic-ip-details:not([hidden]){max-he
     The Seed Supply Chain Diagnostic, including its framework, questions, maturity model, scoring methodology, analytical logic, recommendations, interface and associated content, is proprietary intellectual property of Sage Harvest Agro Pvt. Limited. All rights reserved. No part of this tool or its underlying framework may be copied, reproduced, adapted, distributed, republished, or commercially reused without prior written consent, except where permitted by applicable law.
   </div>
 </div></main>
-<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=15"></script>
+<script src="assets/js/main.js?v=1"></script><script src="assets/js/diagnostic.js?v=16"></script>
 </body></html>
